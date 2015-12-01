@@ -1,0 +1,21 @@
+{
+  "name": "Portfolio",
+  "description": "Profesional Portfolio",
+  "main": "index.js",
+  "authors": [
+    "Luis Navarrete"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/luisfdonavarrete/luisfdonavarrete.github.io",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
