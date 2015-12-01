@@ -1,16 +1,23 @@
-module.exports = function(grunt) {
-    
+module.exports = function (grunt) {
+
     grunt.initConfig({
+
         pkg: grunt.file.readJSON('package.json'),
+
+        dirs: {
+            assets: 'assets',
+            development: 'development'
+        },
+
+        env: grunt.option('env') || process.env.GRUNT_ENV || 'development',
+
         clean: {
             options: {
                 force: true
             },
-            js:    ["dist/assets/js/"],
-            css:   ["dist/assets/css/"],
-            assets: [
-                "dist/assets/*",
-                "!dist/assets/.gitignore"
+            js: ['<%= dirs.assets %>/js/*.js'],
+            css: [
+                '<%= dirs.assets %>/css/styles.min.css'
             ]
         },
         concat: {
@@ -19,72 +26,107 @@ module.exports = function(grunt) {
             },
             script: {
                 src: [
-                    'node_modules/bootstrap/js/collapse.js',
-                    'node_modules/bootstrap/js/scrollspy.js',
-                    // ...more foundation JS you might want to add
-                    'develop/js/script.js'
+                    'bower_components/jquery/dist/jquery.js',
+                    'bower_components/knockout/dist/knockout.js',
+                    '<%= dirs.development %>/js/app.js'
                 ],
-                dest: 'dist/assets/js/script.js'
+                dest: '<%= dirs.assets %>/js/app.js'
             }
         },
         uglify: {
             dist: {
                 files: {
-                    'dist/assets/js/script.min.js': ['dist/assets/js/script.js']
+                    '<%= dirs.assets %>/js/app.min.js': ['<%= dirs.assets %>/js/app.js']
                 }
+            }
+        },
+        concat_css: {
+            files: {
+                src: [
+                    'bower_components/bootstrap/dist/css/bootstrap.css',
+                    '<%= dirs.development %>/css/styles.css'
+                ],
+                dest: '<%= dirs.assets %>/css/styles.css'
             }
         },
         cssmin: {
-            foundation: {
-                files: [{
-                    expand: true,
-                    cwd: 'node_modules/bootstrap/dist/css/',
-                    src: ['*.css', '!*.min.css'],
-                    dest: 'dist/assets/css',
-                    ext: '.min.css'
-                }]
-            },
-            appStyles: {
-                files: [{
-                    expand: true,
-                    cwd: 'develop/css',
-                    src: ['*.css', '!*.min.css'],
-                    dest: 'dist/assets/css',
-                    ext: '.min.css'
-                }]
+            target: {
+                files: {
+                    '<%= dirs.assets %>/css/styles.min.css': ['<%= dirs.assets %>/css/styles.css']
+                }
+            }
+        },
+        critical: {
+            test: {
+                options: {
+                    css: [
+                        '<%= dirs.assets %>/css/styles.min.css'
+                    ],
+                    width: 320,
+                    height: 70
+                },
+                src: '<%= dirs.development %>/index.html',
+                dest: 'index.html'
             }
         },
         watch: {
-            grunt: { 
-                files: ['Gruntfile.js'], 
-                tasks: ['default'] 
+            options: {
+                spawn: false,
+                livereload: true,
+                port: 35729
+            },
+            grunt: {
+                files: ['Gruntfile.js'],
+                tasks: ['default']
             },
             scripts: {
-                files: ['develop/js/**/*.js'],
-                tasks: ['concat','uglify'],
-                options: {
-                    spawn: false
-                }
+                files: ['<%= dirs.development  %>/js/**/*.js'],
+                tasks: ['jsTask']
             },
             css: {
-                files: ['develop/css/**/*.css'],
-                tasks: ['cssmin'],
-                options: {
-                    spawn: false
-                },
+                files: ['<%= dirs.development%>/css/**/*.css', '<%= dirs.development%>/index.html'],
+                tasks: ['cssTask']
             }
         },
-        
+        connect: {
+            server: {
+                options: {
+                    port: 8000,
+                    hostname: '0.0.0.0',
+                    keepalive: true
+                }
+            }
+        }
     });
+
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-concat-css');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-critical');
+    grunt.loadNpmTasks('grunt-env');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+
+    grunt.registerTask('cssTask',(function () {
+        if (grunt.config('env') === 'development') {
+            return ['clean:css', 'concat_css', 'critical'];
+        }
+        else {
+            return ['clean:css', 'concat_css', 'cssmin', 'critical'];
+        }
+    })());
+
+    grunt.registerTask('jsTask',(function () {
+        if (grunt.config('env') === 'development') {
+            return ['clean:js', 'concat'];
+        }
+        else {
+            return ['clean:js', 'concat', 'uglify'];
+        }
+    })());
     // Default task(s).
-    
-    grunt.registerTask('cssTask', ['clean:css', 'cssmin']);
-    grunt.registerTask('jsTask',  ['clean:js', 'concat', 'uglify']);
-    grunt.registerTask('default',  ['clean', 'cssTask', 'jsTask', 'watch']);
+    grunt.registerTask('default', ['clean', 'cssTask', 'jsTask', 'watch']);
 
 };
