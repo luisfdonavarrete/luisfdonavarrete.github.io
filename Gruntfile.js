@@ -31,7 +31,7 @@ module.exports = function (grunt) {
             },
             js: ['<%= dirs.assets %>/js/*.js'],
             css: [
-                '<%= dirs.assets %>/css/styles.min.css'
+                '<%= dirs.assets %>/css/*.css'
             ]
         },
 
@@ -127,9 +127,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concat-css');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-critical');
     grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-express');
@@ -137,7 +137,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('cssTask',(function () {
         if (grunt.config('env') === 'development') {
-            return ['clean:css', 'concat_css'];
+            return ['clean:css', 'concat_css', 'critical'];
         }
         else {
             return ['clean:css', 'concat_css', 'cssmin', 'critical'];
@@ -152,7 +152,14 @@ module.exports = function (grunt) {
             return ['clean:js', 'concat', 'uglify'];
         }
     })());
+    
+    // Creates the `server` task
+    grunt.registerTask('server', [
+        'express',
+        'watch'
+    ]);
+    
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'cssTask', 'jsTask', 'express', 'open', 'watch']);
+    grunt.registerTask('default', ['clean', 'cssTask', 'jsTask', 'server']);
 
 };
