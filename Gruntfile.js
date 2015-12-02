@@ -11,6 +11,20 @@ module.exports = function (grunt) {
 
         env: grunt.option('env') || process.env.GRUNT_ENV || 'development',
 
+        express: {
+            all: {
+                options: {
+                    port: 9000,
+                    hostname: "0.0.0.0",
+                    bases: [__dirname], // Replace with the directory you want the files served from
+                    // Make sure you don't use `.` or `..` in the path as Express
+                    // is likely to return 403 Forbidden responses if you do
+                    // http://stackoverflow.com/questions/14594121/express-res-sendfile-throwing-forbidden-error
+                    livereload: true
+                }
+            }
+        },
+
         clean: {
             options: {
                 force: true
@@ -20,6 +34,7 @@ module.exports = function (grunt) {
                 '<%= dirs.assets %>/css/styles.min.css'
             ]
         },
+
         concat: {
             options: {
                 separator: ';'
@@ -33,6 +48,7 @@ module.exports = function (grunt) {
                 dest: '<%= dirs.assets %>/js/app.js'
             }
         },
+
         uglify: {
             dist: {
                 files: {
@@ -40,6 +56,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         concat_css: {
             files: {
                 src: [
@@ -49,6 +66,7 @@ module.exports = function (grunt) {
                 dest: '<%= dirs.assets %>/css/styles.css'
             }
         },
+
         cssmin: {
             target: {
                 files: {
@@ -56,6 +74,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         critical: {
             test: {
                 options: {
@@ -69,32 +88,38 @@ module.exports = function (grunt) {
                 dest: 'index.html'
             }
         },
+
         watch: {
-            options: {
-                spawn: false,
-                livereload: true,
-                port: 35729
-            },
             grunt: {
                 files: ['Gruntfile.js'],
-                tasks: ['default']
+                tasks: ['default'],
+                options: {
+                    spawn: false,
+                    livereload: true
+                }
             },
             scripts: {
                 files: ['<%= dirs.development  %>/js/**/*.js'],
-                tasks: ['jsTask']
+                tasks: ['jsTask'],
+                options: {
+                    spawn: false,
+                    livereload: true
+                }
             },
             css: {
                 files: ['<%= dirs.development%>/css/**/*.css', '<%= dirs.development%>/index.html'],
-                tasks: ['cssTask']
+                tasks: ['cssTask'],
+                options: {
+                    spawn: false,
+                    livereload: true
+                }
             }
         },
-        connect: {
-            server: {
-                options: {
-                    port: 8000,
-                    hostname: '0.0.0.0',
-                    keepalive: true
-                }
+
+        open: {
+            all: {
+                // Gets the port from the connect configuration
+                path: 'http://localhost:<%= express.all.options.port%>'
             }
         }
     });
@@ -107,11 +132,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-critical');
     grunt.loadNpmTasks('grunt-env');
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-express');
+    grunt.loadNpmTasks('grunt-open');
 
     grunt.registerTask('cssTask',(function () {
         if (grunt.config('env') === 'development') {
-            return ['clean:css', 'concat_css', 'critical'];
+            return ['clean:css', 'concat_css'];
         }
         else {
             return ['clean:css', 'concat_css', 'cssmin', 'critical'];
@@ -127,6 +153,6 @@ module.exports = function (grunt) {
         }
     })());
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'cssTask', 'jsTask', 'watch']);
+    grunt.registerTask('default', ['clean', 'cssTask', 'jsTask', 'express', 'open', 'watch']);
 
 };
