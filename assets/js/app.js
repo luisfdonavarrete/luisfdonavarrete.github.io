@@ -9335,9 +9335,10 @@ v.tmpl.tag.ko_with={open:"with($1) {",close:"} "})};a.vb.prototype=new a.O;var b
 function bio() {
 	this.name = 'Luis Navarrete';
 	this.role = 'Front-End Developer';
-	this.summary = 'I am a Front-End developer with a solid knowledge in Responsive Web design using HTML, CSS, JavaScript and JavaScript' +
-	'frameworks such as jQuery, Knockout and Backbone. I worked as a full-stack web developer in the advertising field for 2' +
-	'years using PHP, CodeIgniter, JavaScript, Bootstrap. I am truly passionate about web development, I love learning new' +
+	this.picture = 'assets/img/me.jpg';
+	this.summary = 'I am a Front-End developer with a solid knowledge in Responsive Web design using HTML, CSS, JavaScript and JavaScript ' +
+	'frameworks such as jQuery, Knockout and Backbone. I worked as a full-stack web developer in the advertising field for 2 ' +
+	'years using PHP, CodeIgniter, JavaScript, Bootstrap. I am truly passionate about web development, I love learning new ' +
 	'languages and frameworks, and I am always looking for a better way to write code.';
 
 }
@@ -9345,49 +9346,33 @@ function bio() {
 function portfolio() {
 	this.projects = [
 		{
-			name: 'Arcade Game Frogger (Clone)',
+			name: 'Calories Health Tracker',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-arcade-game',
-            image: 'images/arcade-game-frogger.png',
-            description: "This is a personal project I built to perform a calculation " +
-            "I regularly do at my job as an HVAC engineer.  This was my first ever web " +
-            "development project and I'm very proud of it!  It's been very rewarding " +
-            "to see most of the engineers in my office using it!  The site was built " +
-            "on Google App Engine with a Python back end.",
+            image: 'assets/img/health-tracker.png',
+            description: '' 
 		},
 		{
-			name: 'Arcade Game Frogger (Clone)',
+			name: 'Neighborhood Map',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-arcade-game',
-            image: 'images/arcade-game-frogger.png',
-            description: "This is a personal project I built to perform a calculation " +
-            "I regularly do at my job as an HVAC engineer.  This was my first ever web " +
-            "development project and I'm very proud of it!  It's been very rewarding " +
-            "to see most of the engineers in my office using it!  The site was built " +
-            "on Google App Engine with a Python back end.",
+            image: 'assets/img/neighbothood-map.png',
+            description: ''
 		},
 		{
-			name: 'Arcade Game Frogger (Clone)',
+			name: 'Web Optimization',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-arcade-game',
-            image: 'images/arcade-game-frogger.png',
-            description: "This is a personal project I built to perform a calculation " +
-            "I regularly do at my job as an HVAC engineer.  This was my first ever web " +
-            "development project and I'm very proud of it!  It's been very rewarding " +
-            "to see most of the engineers in my office using it!  The site was built " +
-            "on Google App Engine with a Python back end.",
+            image: 'assets/img/website-optimization.png',
+            description: ''
 		},
 		{
-			name: 'Arcade Game Frogger (Clone)',
+			name: 'Arcade Game Frogger',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-arcade-game',
-            image: 'images/arcade-game-frogger.png',
-            description: "This is a personal project I built to perform a calculation " +
-            "I regularly do at my job as an HVAC engineer.  This was my first ever web " +
-            "development project and I'm very proud of it!  It's been very rewarding " +
-            "to see most of the engineers in my office using it!  The site was built " +
-            "on Google App Engine with a Python back end.",
-		}
+            image: 'assets/img/arcade-game-frogger.png',
+            description: ''
+		}		
 	];
 } 
 

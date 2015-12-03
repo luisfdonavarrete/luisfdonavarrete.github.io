@@ -6764,6 +6764,7 @@ body {
 
 .about{
 	background-color: #18BC9C;
+	padding: 25px 0;
 }
 
 .margin-top-0{
@@ -6774,8 +6775,18 @@ body {
 	margin: 0;
 }
 
-.photo-perfil{
-	padding: 20px 0;
+.summary{
+	line-height: 2;
+	color: #fff;
+	font-size: 15px;
+}
+
+.project-entry{
+	height: 180px;
+}
+
+.project-entry h3{
+	margin: 10px 0;
 }
 
 @media (min-width: 768px){

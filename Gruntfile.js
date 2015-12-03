@@ -35,11 +35,21 @@ module.exports = function (grunt) {
         image_resize: {
             resize: {
                 options: {
-                    width: 215,
+                    width: 190,
+                    height: 120,
+                    upscale: true                   
+                },
+                src: '<%= dirs.development %>/img/*.png',
+                dest: '<%= dirs.assets %>/img/'
+            },
+            me: {
+                options: {
+                    width: 100,
                     height: 120
                 },
-                src: '<%= dirs.development%>/img/*.png',
-                dest: '<%= dirs.assets %>/img/'
+                files: {
+                    '<%= dirs.assets %>/img/me.jpg': '<%= dirs.development %>/img/me.jpg'
+                }
             }
         },
 
@@ -161,8 +171,7 @@ module.exports = function (grunt) {
             return ['clean:js', 'concat', 'uglify'];
         }
     })());
-    
-    // Creates the `server` task
+
     grunt.registerTask('server', [
         'express',
         'watch'
