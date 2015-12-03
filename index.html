@@ -50,16 +50,30 @@
 			</div>
 			<!-- /.container-fluid -->
 		</nav>
-		<section class="about">
+		<section id="header" class="about">
 			<div class="container">
-			<div class="row">
-				<div class="col-xs-12 col-md-offset-1 col-md-10 text-center">
-					<img src="assets/img/images.jpg" alt="perfil-foto" class="img-circle photo-perfil">
-					<h1 class="margin-0">Luis Navarrete</h1>
-					<h4 class="margin-top-0">Front-End Developer</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae odit dolor, obcaecati facilis atque veritatis sequi rerum sunt, molestias eius aspernatur placeat perferendis voluptatum, soluta, deserunt accusamus ea reiciendis. Suscipit?</p>
+				<div class="row">
+					<div class="col-xs-12 col-md-offset-1 col-md-10 text-center">
+						<img src="assets/img/images.jpg" alt="perfil-foto" class="img-circle photo-perfil">
+						<h1 class="margin-0" data-bind="text: name"></h1>
+						<h4 class="margin-top-0" data-bind="text: role"></h4>
+						<p data-bind="text: summary"></p>
+					</div>
 				</div>
 			</div>
+		</section>
+		<section id="portfolio">
+			<div class="container">
+				<h2 class="portfolio text-center">Portfolio</h2>
+				<div class="row">
+					<div class="col-sm-8 col-sm-offset-2 col-xs-12">
+						<div class="row" data-bind="foreach: projects">
+							<div class="col-sm-4 col-xs-12">
+								<spam data-bind="text: name"><span>
+							</span></spam></div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 		<script src="assets/js/app.js"></script>
