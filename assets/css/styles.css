@@ -6785,6 +6785,18 @@ body {
 	height: 180px;
 }
 
+hr{
+    clear: both;
+    float: none;
+    width: 70%;
+    height: 1px;
+    margin: 10px auto;
+    padding: 0;
+    border: none;
+    background: 0 0;
+    background: -webkit-gradient(linear,left bottom,right bottom,color-stop(0,transparent),color-stop(0.2,#fff),color-stop(0.8,#fff),color-stop(1,transparent));
+}
+
 .project-entry h3{
 	margin: 10px 0;
 }
