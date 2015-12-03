@@ -16,10 +16,7 @@ module.exports = function (grunt) {
                 options: {
                     port: 9000,
                     hostname: "0.0.0.0",
-                    bases: [__dirname], // Replace with the directory you want the files served from
-                    // Make sure you don't use `.` or `..` in the path as Express
-                    // is likely to return 403 Forbidden responses if you do
-                    // http://stackoverflow.com/questions/14594121/express-res-sendfile-throwing-forbidden-error
+                    bases: [__dirname],
                     livereload: true
                 }
             }
@@ -33,6 +30,17 @@ module.exports = function (grunt) {
             css: [
                 '<%= dirs.assets %>/css/*.css'
             ]
+        },
+
+        image_resize: {
+            resize: {
+                options: {
+                    width: 215,
+                    height: 120
+                },
+                src: '<%= dirs.development%>/img/*.png',
+                dest: '<%= dirs.assets %>/img/'
+            }
         },
 
         concat: {
@@ -133,6 +141,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-critical');
     grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-express');
+    grunt.loadNpmTasks('grunt-image-resize');
     grunt.loadNpmTasks('grunt-open');
 
     grunt.registerTask('cssTask',(function () {
