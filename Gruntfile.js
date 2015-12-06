@@ -35,8 +35,8 @@ module.exports = function (grunt) {
         image_resize: {
             resize: {
                 options: {
-                    width: 190,
-                    height: 120,
+                    width: 360,
+                    height: 207,
                     upscale: true                   
                 },
                 src: '<%= dirs.development %>/img/*.png',
@@ -60,6 +60,7 @@ module.exports = function (grunt) {
             script: {
                 src: [
                     'bower_components/jquery/dist/jquery.js',
+                    'bower_components/bootstrap/js/scrollspy.js',
                     'bower_components/knockout/dist/knockout.js',
                     '<%= dirs.development %>/js/app.js'
                 ],
@@ -117,7 +118,7 @@ module.exports = function (grunt) {
                 }
             },
             scripts: {
-                files: ['<%= dirs.development  %>/js/**/*.js'],
+                files: ['<%= dirs.development %>/js/**/*.js'],
                 tasks: ['jsTask'],
                 options: {
                     spawn: false,
@@ -125,7 +126,7 @@ module.exports = function (grunt) {
                 }
             },
             css: {
-                files: ['<%= dirs.development%>/css/**/*.css', '<%= dirs.development%>/index.html'],
+                files: ['<%= dirs.development %>/css/**/*.css', '<%= dirs.development %>/css/*.css', '<%= dirs.development%>/index.html'],
                 tasks: ['cssTask'],
                 options: {
                     spawn: false,

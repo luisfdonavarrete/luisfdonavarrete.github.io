@@ -15,21 +15,21 @@ function portfolio() {
 		{
 			name: 'Calories Health Tracker',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
-            github: '//github.com/luisfdonavarrete/frontend-nanodegree-arcade-game',
+            github: '//github.com/luisfdonavarrete/frontend-nanodegree-calories-health-tracker/',
             image: 'assets/img/health-tracker.png',
             description: '' 
 		},
 		{
 			name: 'Neighborhood Map',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
-            github: '//github.com/luisfdonavarrete/frontend-nanodegree-arcade-game',
+            github: '//github.com/luisfdonavarrete/frontend-nanodegree-neighborhood-map-project/',
             image: 'assets/img/neighbothood-map.png',
             description: ''
 		},
 		{
 			name: 'Web Optimization',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
-            github: '//github.com/luisfdonavarrete/frontend-nanodegree-arcade-game',
+            github: '//github.com/luisfdonavarrete/frontend-nanodegree-website-optimization/',
             image: 'assets/img/website-optimization.png',
             description: ''
 		},
@@ -39,6 +39,13 @@ function portfolio() {
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-arcade-game',
             image: 'assets/img/arcade-game-frogger.png',
             description: ''
+		},
+		{
+			name: 'Feed Reader Testing',
+            url: '//luisfdonavarrete.github.io/frontend-nanodegree-feedreader-jasmine/',
+            github: '//github.com/luisfdonavarrete/frontend-nanodegree-feedreader-jasmine',
+            image: 'assets/img/feed-reader-testing.png',
+            description: ''
 		}		
 	];
 } 
@@ -46,5 +53,17 @@ function portfolio() {
 
 // Activates knockout.js
 ko.applyBindings(new portfolio(), document.getElementById('portfolio'));
-ko.applyBindings(new bio(), document.getElementById('header'));
+ko.applyBindings(new bio(), document.getElementById('about'));
+
+$('.navbar-nav a').click(function (e) {
+	e.preventDefault();
+	var target = $(this).attr('href');
+	var topScroll = $(target).position().top;
+	$('body').animate({
+		scrollTop: topScroll
+	}, 1500, function () {
+		location.hash = target;
+	});	
+	return false;
+});
 
