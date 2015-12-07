@@ -7,10 +7,11 @@ function bio() {
 	'frameworks such as jQuery, Knockout and Backbone. I worked as a full-stack web developer in the advertising field for 2 ' +
 	'years using PHP, CodeIgniter, JavaScript, Bootstrap. I am truly passionate about web development, I love learning new ' +
 	'languages and frameworks, and I am always looking for a better way to write code.';
-
 }
 
 function portfolio() {
+	
+	var template = _.template($('#modal-template').html());
 	this.projects = [
 		{
 			name: 'Calories Health Tracker',
@@ -24,36 +25,74 @@ function portfolio() {
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-neighborhood-map-project/',
             image: 'assets/img/neighbothood-map.png',
-            description: ''
+            description: 'Fourth project for Udacity Front-end Nanodegree. This app is an ' +
+			'interactive map that lists 30 popular places according to the city the user is ' +
+			'in. The places are gotten from the Foursquare API using the user location. If ' +
+			'the user does not give permission the places listed are from Chicago, IL. ' +
+			'There is a search bar that allows the user to filter the places by name. To see more ' +
+			'information about the place, the place can be selected by clicking on the listView or ' +
+			'by clicking on the marker. the information is shown in a infoWindow.'
 		},
 		{
 			name: 'Web Optimization',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-website-optimization/',
             image: 'assets/img/website-optimization.png',
-            description: ''
+            description: 'This was the fourth project in Udacity Front-End Web Developer Nanodegree. ' +
+			'The objective in this project was to identify and perform optimizations to achieve a ' +
+			'PageSpeed score of 90 or above. Grunt.js and grunt.js modules were used to automate tasks ' +
+			'like Javascript, CSS and Image minification, and Inline critical CSS between others.'
 		},
 		{
 			name: 'Arcade Game Frogger',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-arcade-game',
             image: 'assets/img/arcade-game-frogger.png',
-            description: ''
+            description: 'This was the third project in Udacity Front-End Web Developer ' +
+			'Nanodegree. The objective of this project was to gain experience in OOP with ' +
+			'JavaScript. In this project I had the opportunity to get creative and explore ' +
+			'some interesting concept like, Finite State Machine (FSM) which I implemented using JavaScript.'
 		},
 		{
 			name: 'Feed Reader Testing',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-feedreader-jasmine/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-feedreader-jasmine',
             image: 'assets/img/feed-reader-testing.png',
-            description: ''
+            description: 'Fifth project for Udacity Front-end Nanodegree. In this project I ' + 
+			'was given a web-based application that reads RSS feeds, but the application had ' +
+			'an incomplete test suite. Coding the test suite required me to explore the ' +
+			'application to understand of how it works.'
 		}		
 	];
-} 
+	
+	this.showModal = function(item){
+		var $modalView = $('#portfolio-modal');
+		$modalView.html(template(item)); 
+		$modalView.modal('show');		
+	};
+}
+
+function contact(){
+	this.contactLinks = [
+		{
+			name: 'Linkedin',
+			link: '//ca.linkedin.com/in/navarreteluis',
+			icon: 'assets/img/In-White-34px-R.png'
+		},
+		{
+			name: 'Github',
+			link: '//github.com/luisfdonavarrete',
+			icon: 'assets/img/GitHub-Mark-Light-32px.png'
+		}
+	];
+	
+}
 
 
 // Activates knockout.js
 ko.applyBindings(new portfolio(), document.getElementById('portfolio'));
 ko.applyBindings(new bio(), document.getElementById('about'));
+ko.applyBindings(new contact(), document.getElementById('contact'));
 
 $('.navbar-nav a').click(function (e) {
 	e.preventDefault();
@@ -65,5 +104,12 @@ $('.navbar-nav a').click(function (e) {
 		location.hash = target;
 	});	
 	return false;
+});
+
+$('.project-entry').hover(function(e){
+	$(this).find('.overlay').toggleClass('active');
+},
+function(e){
+	$(this).find('.overlay').toggleClass('active');
 });
 

@@ -2,19 +2,21 @@ body {
 	padding-top: 50px;
 }
 
-#contact h3{
+a:hover, a:focus {
+	text-decoration: none;
+}
+
+#contact h3 {
 	margin: 0 0 20px 0;
+	font-size: 40px;
+	color: #fff;
 }
 
-.padding-bottom-15{
-	padding-bottom: 15px;
-}
-
-#about, #contact{
+#about, #contact {
 	background-color: #18BC9C;
 }
 
-#about, #portfolio, #contact{
+#about, #portfolio, #contact {
 	padding: 55px 0;
 }
 
@@ -23,28 +25,50 @@ body {
 	margin: 20px 0;
 }
 
-.margin-top-0{
+.margin-top-0 {
 	margin-top: 0;
 }
 
-.margin-0{
-	margin: 0;
-}
-
-.thumbnail > img, 
-.thumbnail a > img{
-	margin: 0;
-} 
-
-.summary{
+.summary {
 	line-height: 2;
 	color: #fff;
 	font-size: 15px;
 }
 
+.project-entry, .modal-dialog img.img-responsive {
+	box-shadow: 0 0 15px #000;
+}
+
+.btn-default:hover, .btn-default:focus {
+    color: #fff;
+    background-color: #2B3D4F;
+    border-color: #18BC9C;
+}
+
+.modal-dialog img {
+	margin: 0 auto;
+}
+
+.project-description {
+	padding: 10px 25px;
+}
+
+.project-links {
+	background-color: #18BC9C;
+	border-color: #2B3D4F;
+	color: #fff;
+}
+
+.project-name, .project-title h3 {
+	white-space: nowrap;
+	font-size: 20px;
+}
+
 .project-entry{
 	overflow: hidden;
 	position: relative;
+	cursor: pointer;
+	display: inline-block;
 }
 
 .overlay {
@@ -53,14 +77,12 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	opacity: .5;
-	background-color: #000;
-	transform: translateY(9999px);
+	background-color:rgba(0,0,0,.5);
+	transform: translateY(270px);
     transition: transform 0.2s;
 }
 
-.project-entry:hover {
-	border: 1px solid blue;
+.overlay.active {
 	transform: translateY(0px);
     transition: transform 0.2s;
 }
@@ -86,10 +108,6 @@ hr{
     border: none;
     background: 0 0;
     background: -webkit-gradient(linear,left bottom,right bottom,color-stop(0,transparent),color-stop(0.2,#fff),color-stop(0.8,#fff),color-stop(1,transparent));
-}
-
-.project-entry h3{
-	margin: 10px 0;
 }
 
 @media (min-width: 768px){
