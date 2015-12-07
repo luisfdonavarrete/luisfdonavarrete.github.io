@@ -61,6 +61,9 @@ module.exports = function (grunt) {
                 src: [
                     'bower_components/jquery/dist/jquery.js',
                     'bower_components/bootstrap/js/scrollspy.js',
+                    'bower_components/bootstrap/js/transition.js',
+                    'bower_components/bootstrap/js/modal.js',
+                    'bower_components/underscore/underscore.js',
                     'bower_components/knockout/dist/knockout.js',
                     '<%= dirs.development %>/js/app.js'
                 ],
