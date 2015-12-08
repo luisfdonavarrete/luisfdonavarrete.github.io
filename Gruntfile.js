@@ -83,6 +83,7 @@ module.exports = function (grunt) {
             files: {
                 src: [
                     'bower_components/bootstrap/dist/css/bootstrap.css',
+                    'bower_components/font-awesome/css/font-awesome.css',
                     '<%= dirs.development %>/css/styles.css'
                 ],
                 dest: '<%= dirs.assets %>/css/styles.css'
