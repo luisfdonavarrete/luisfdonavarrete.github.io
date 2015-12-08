@@ -77,13 +77,18 @@ function contact(){
 		{
 			name: 'Linkedin',
 			link: '//ca.linkedin.com/in/navarreteluis',
-			icon: 'assets/img/In-White-34px-R.png'
+			icon: 'fa fa-linkedin'
 		},
 		{
 			name: 'Github',
 			link: '//github.com/luisfdonavarrete',
-			icon: 'assets/img/GitHub-Mark-Light-32px.png'
-		}
+			icon: 'fa fa-github'
+		},			
+		{
+			name: 'Phone',
+			link: 'tel:19054647431',
+			icon: 'fa fa-phone-square'
+		}		
 	];
 	
 }
@@ -94,7 +99,7 @@ ko.applyBindings(new portfolio(), document.getElementById('portfolio'));
 ko.applyBindings(new bio(), document.getElementById('about'));
 ko.applyBindings(new contact(), document.getElementById('contact'));
 
-$('.navbar-nav a').click(function (e) {
+$('.navbar-nav a, .side-menu a').click(function (e) {
 	e.preventDefault();
 	var target = $(this).attr('href');
 	var topScroll = $(target).position().top;
@@ -102,6 +107,9 @@ $('.navbar-nav a').click(function (e) {
 		scrollTop: topScroll
 	}, 1500, function () {
 		location.hash = target;
+		if(!$('body').hasClass('menu-hidden')){
+			$('body').addClass('menu-hidden');
+		}
 	});	
 	return false;
 });
@@ -111,5 +119,10 @@ $('.project-entry').hover(function(e){
 },
 function(e){
 	$(this).find('.overlay').toggleClass('active');
+});
+
+$('.navbar-brand').click(function(e){
+	e.preventDefault();
+	$('body').toggleClass('menu-hidden');
 });
 

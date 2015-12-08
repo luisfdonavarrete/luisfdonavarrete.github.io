@@ -17,9 +17,14 @@
 		<![endif]-->
 </head>
 
-<body data-spy="scroll" data-target="#navbar-page">
+<body class="menu-hidden" data-spy="scroll" data-target="#navbar-page">
 	<nav id="navbar-page" class="navbar navbar-fixed-top navbar-color">
 		<div class="container-fluid">
+			<div class="navbar-header visible-xs-block">
+				<a class="navbar-brand" href="#">
+					<i class="fa fa-bars"></i>
+				</a>
+			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
@@ -34,6 +39,19 @@
 				</ul>
 			</div>
 		</div>
+	</nav>
+	<nav class="side-menu visible-xs-block">
+		<ul class="">
+			<li>
+				<a href="#about">ABOUT</a>
+			</li>
+			<li>
+				<a href="#portfolio">PORTFOLIO</a>
+			</li>
+			<li>
+				<a href="#contact">CONTACT</a>
+			</li>
+		</ul>
 	</nav>
 	<section id="about">
 		<div class="container">
@@ -56,7 +74,7 @@
 					<div class="row text-center" data-bind="foreach: projects">
 						<div class="col-sm-6 col-xs-12">
 							<h3 class="text-center project-name" data-bind="text: name"></h3>
-							<div class="project-entry" data-bind="click: $parent.showModal">								
+							<div class="project-entry" data-bind="click: $parent.showModal">
 								<img class="img-responsive" data-bind="attr: { src: image, alt: name }">
 								<div class="overlay">
 									<div class="project-title">
@@ -74,9 +92,9 @@
 	<section id="contact">
 		<div class="container text-center">
 			<h3>Contact</h3>
-			<span data-bind="foreach: contactLinks">
-				<a target="_blank" data-bind="attr: { href: link}">
-					<img data-bind="attr: {src : icon, alt: name}">
+			<span data-bind="foreach: contactLinks">	
+				<a class="contact-item" target="_blank" data-bind="attr: { href: link}">
+					<i data-bind="attr: { class: icon }"></i>
 				</a>
 			</span>
 		</div>
@@ -99,11 +117,11 @@
 						<%= description %>
 					</p>
 					<p class="text-center">
-						<a class="btn btn-default project-links" href="#" role="button">
-							<img src="assets/img/GitHub-Mark-Light-32px.png" alt="github link"> Code
+						<a target="_blank" class="btn btn-default project-links" href="<%= github %>" role="button">
+							<i class="fa fa-github"></i> Code
 						</a>
-						<a class="btn btn-default project-links" href="#" role="button">
-							Live Project
+						<a class="btn btn-default project-links" href="<%= url %>" role="button">
+							<i class="fa fa-code"></i> Live Project
 						</a>
 					</p>
 				</div>
