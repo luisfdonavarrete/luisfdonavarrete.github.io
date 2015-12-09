@@ -11464,14 +11464,14 @@ function portfolio() {
 	this.projects = [
 		{
 			name: 'Calories Health Tracker',
-            url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
+            url: '//luisfdonavarrete.github.io/frontend-nanodegree-calories-health-tracker/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-calories-health-tracker/',
             image: 'assets/img/health-tracker.png',
             description: '' 
 		},
 		{
 			name: 'Neighborhood Map',
-            url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
+            url: '//luisfdonavarrete.github.io/frontend-nanodegree-neighborhood-map-project/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-neighborhood-map-project/',
             image: 'assets/img/neighbothood-map.png',
             description: 'Fourth project for Udacity Front-end Nanodegree. This app is an ' +
@@ -11484,7 +11484,7 @@ function portfolio() {
 		},
 		{
 			name: 'Web Optimization',
-            url: '//luisfdonavarrete.github.io/frontend-nanodegree-arcade-game/',
+            url: '//luisfdonavarrete.github.io/frontend-nanodegree-website-optimization/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-website-optimization/',
             image: 'assets/img/website-optimization.png',
             description: 'This was the fourth project in Udacity Front-End Web Developer Nanodegree. ' +
