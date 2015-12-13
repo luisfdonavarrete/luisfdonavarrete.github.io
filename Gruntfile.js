@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                 options: {
                     width: 360,
                     height: 207,
-                    upscale: true                   
+                    upscale: true
                 },
                 src: '<%= dirs.development %>/img/*.png',
                 dest: '<%= dirs.assets %>/img/'
@@ -50,6 +50,17 @@ module.exports = function (grunt) {
                 files: {
                     '<%= dirs.assets %>/img/me.jpg': '<%= dirs.development %>/img/me.jpg'
                 }
+            }
+        },
+
+        imagemin: {
+            dynamic: {                       
+                files: [{
+                    expand: true,
+                    cwd: '<%= dirs.development %>/',
+                    src: ['img/*.{png,jpg,gif}'],
+                    dest: '<%= dirs.assets %>/'
+                }]
             }
         },
 
@@ -157,9 +168,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-express');
     grunt.loadNpmTasks('grunt-image-resize');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-open');
 
-    grunt.registerTask('cssTask',(function () {
+    grunt.registerTask('cssTask', (function () {
         if (grunt.config('env') === 'development') {
             return ['clean:css', 'concat_css', 'critical'];
         }
@@ -168,7 +180,7 @@ module.exports = function (grunt) {
         }
     })());
 
-    grunt.registerTask('jsTask',(function () {
+    grunt.registerTask('jsTask', (function () {
         if (grunt.config('env') === 'development') {
             return ['clean:js', 'concat'];
         }
