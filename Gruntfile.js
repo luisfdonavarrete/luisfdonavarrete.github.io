@@ -54,7 +54,7 @@ module.exports = function (grunt) {
         },
 
         imagemin: {
-            dynamic: {                       
+            dynamic: {
                 files: [{
                     expand: true,
                     cwd: '<%= dirs.development %>/',
@@ -150,6 +150,30 @@ module.exports = function (grunt) {
             }
         },
 
+        'string-replace': {
+            inline: {
+                files: {
+                    'index.html': 'index.html',
+                },
+                options: {
+                    replacements: [
+                        {
+                            pattern: '<script src="assets/js/app.js"></script>',
+                            replacement: '<script src="assets/js/app.min.js"></script>'
+                        },
+                        {
+                            pattern: '<link href="assets/css/styles.css" rel="stylesheet">',
+                            replacement: '<link href="assets/css/styles.min.css" rel="stylesheet">'
+                        },
+                        {
+                            pattern: 'assets/css/styles.css',
+                            replacement: 'assets/css/styles.min.css'
+                        }
+                    ]
+                }
+            }
+        },
+
         open: {
             all: {
                 // Gets the port from the connect configuration
@@ -158,43 +182,44 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-concat-css');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-critical');
-    grunt.loadNpmTasks('grunt-env');
-    grunt.loadNpmTasks('grunt-express');
-    grunt.loadNpmTasks('grunt-image-resize');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks('grunt-open');
+grunt.loadNpmTasks('grunt-contrib-clean');
+grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-contrib-concat');
+grunt.loadNpmTasks('grunt-contrib-watch');
+grunt.loadNpmTasks('grunt-concat-css');
+grunt.loadNpmTasks('grunt-contrib-cssmin');
+grunt.loadNpmTasks('grunt-critical');
+grunt.loadNpmTasks('grunt-env');
+grunt.loadNpmTasks('grunt-express');
+grunt.loadNpmTasks('grunt-image-resize');
+grunt.loadNpmTasks('grunt-contrib-imagemin');
+grunt.loadNpmTasks('grunt-open');
+grunt.loadNpmTasks('grunt-string-replace');
 
-    grunt.registerTask('cssTask', (function () {
-        if (grunt.config('env') === 'development') {
-            return ['clean:css', 'concat_css', 'critical'];
-        }
-        else {
-            return ['clean:css', 'concat_css', 'cssmin', 'critical'];
-        }
-    })());
+grunt.registerTask('cssTask', (function () {
+    if (grunt.config('env') === 'development') {
+        return ['clean:css', 'concat_css', 'critical'];
+    }
+    else {
+        return ['clean:css', 'concat_css', 'cssmin', 'critical', 'string-replace'];
+    }
+})());
 
-    grunt.registerTask('jsTask', (function () {
-        if (grunt.config('env') === 'development') {
-            return ['clean:js', 'concat'];
-        }
-        else {
-            return ['clean:js', 'concat', 'uglify'];
-        }
-    })());
+grunt.registerTask('jsTask', (function () {
+    if (grunt.config('env') === 'development') {
+        return ['clean:js', 'concat'];
+    }
+    else {
+        return ['clean:js', 'concat', 'uglify'];
+    }
+})());
 
-    grunt.registerTask('server', [
-        'express',
-        'watch'
-    ]);
+grunt.registerTask('server', [
+    'express',
+    'watch'
+]);
     
-    // Default task(s).
-    grunt.registerTask('default', ['clean', 'cssTask', 'jsTask', 'server']);
+// Default task(s).
+grunt.registerTask('default', ['clean', 'cssTask', 'jsTask', 'server']);
 
 };

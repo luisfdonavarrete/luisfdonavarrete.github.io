@@ -21,6 +21,7 @@
     "grunt-express": "~1.4.1",
     "grunt-open": "~0.2.3",
     "grunt-image-resize": "~1.0.0",
-    "grunt-contrib-imagemin": "~1.0.0"
+    "grunt-contrib-imagemin": "~1.0.0",
+    "grunt-string-replace": "~1.2.1"
   }
 }
