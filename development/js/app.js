@@ -10,9 +10,17 @@ function bio() {
 }
 
 function portfolio() {
-	
+
 	var template = _.template($('#modal-template').html());
 	this.projects = [
+		{
+			name: 'Note Board React.js',
+            url: '//luisfdonavarrete.github.io/notes-board/app/',
+            github: '//github.com/luisfdonavarrete/notes-board/',
+            image: 'assets/img/note-board.png',
+            description: 'A single-page web application built using the React.js and Firebase, ' +
+			'which stores notes with useful information or things left to do.'
+		},
 		{
 			name: 'Calories Health Tracker',
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-calories-health-tracker/',
@@ -22,7 +30,7 @@ function portfolio() {
 			'that tracks the user\'s calorie intake. Users can search for food items provided by ' +
 			'the Nutritionix API and select them. Once they are selected, they will be added to the ' +
 			'list of foods the user is tracking. The total calorie count will also update to reflect ' +
-			'the new daily total.' 
+			'the new daily total.'
 		},
 		{
 			name: 'Neighborhood Map',
@@ -62,17 +70,17 @@ function portfolio() {
             url: '//luisfdonavarrete.github.io/frontend-nanodegree-feedreader-jasmine/',
             github: '//github.com/luisfdonavarrete/frontend-nanodegree-feedreader-jasmine',
             image: 'assets/img/feed-reader-testing.png',
-            description: 'Fifth project for Udacity Front-end Nanodegree. In this project I ' + 
+            description: 'Fifth project for Udacity Front-end Nanodegree. In this project I ' +
 			'was given a web-based application that reads RSS feeds, but the application had ' +
 			'an incomplete test suite. Coding the test suite required me to explore the ' +
 			'application to understand of how it works.'
-		}		
+		}
 	];
-	
+
 	this.showModal = function(item){
 		var $modalView = $('#portfolio-modal');
-		$modalView.html(template(item)); 
-		$modalView.modal('show');		
+		$modalView.html(template(item));
+		$modalView.modal('show');
 	};
 }
 
@@ -87,14 +95,14 @@ function contact(){
 			name: 'Github',
 			link: '//github.com/luisfdonavarrete',
 			icon: 'fa fa-github'
-		},			
+		},
 		{
 			name: 'Phone',
 			link: 'tel:19054647431',
 			icon: 'fa fa-phone-square'
-		}		
+		}
 	];
-	
+
 }
 
 
@@ -114,7 +122,7 @@ $('.navbar-nav a, .side-menu a').click(function (e) {
 		if(!$('body').hasClass('menu-hidden')){
 			$('body').addClass('menu-hidden');
 		}
-	});	
+	});
 	return false;
 });
 
@@ -129,4 +137,3 @@ $('.navbar-brand').click(function(e){
 	e.preventDefault();
 	$('body').toggleClass('menu-hidden');
 });
-
