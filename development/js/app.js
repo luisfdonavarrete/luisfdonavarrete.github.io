@@ -15,7 +15,7 @@ function portfolio() {
 	this.projects = [
 		{
 			name: 'Note Board React.js',
-            url: '//luisfdonavarrete.github.io/notes-board/app/',
+            url: '//luisfdonavarrete.github.io/notes-board/builds/production/',
             github: '//github.com/luisfdonavarrete/notes-board/',
             image: 'assets/img/note-board.png',
             description: 'A single-page web application built using the React.js and Firebase, ' +
